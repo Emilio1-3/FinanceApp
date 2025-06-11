@@ -2,6 +2,7 @@
 import {
   FaHome, FaChartBar, FaWallet, FaCreditCard, FaBell, FaCog, FaSignOutAlt
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   { icon: <FaHome />, label: "Home" },
@@ -13,6 +14,13 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="w-20 h-screen bg-white border-r flex flex-col justify-between items-center py-6">
       {/* Top Section - Menu */}
@@ -25,7 +33,11 @@ export default function Sidebar() {
       </div>
 
       {/* Bottom Section - Logout */}
-      <div className="text-xl text-red-500 hover:text-red-700 cursor-pointer">
+      <div 
+        className="text-xl text-red-500 hover:text-red-700 cursor-pointer"
+        onClick={handleLogout}
+        title="sign Out"
+        >
         <FaSignOutAlt />
       </div>
     </div>

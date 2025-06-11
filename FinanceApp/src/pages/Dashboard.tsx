@@ -1,9 +1,24 @@
 // imports
 import { useState } from "react";
-import { FaExchangeAlt, FaPaperPlane, FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  FaExchangeAlt,
+  FaPaperPlane,
+  FaArrowDown,
+  FaArrowUp,
+} from "react-icons/fa";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line, Pie } from "react-chartjs-2";
-import Calendar, { type, CalendarProps } from "react-calendar";
+import Calendar from "react-calendar";
+import type { CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import visaLogo from "../assets/Visa_Logo.png";
 import mastercardLogo from "../assets/Mastercard-logo.svg";
