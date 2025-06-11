@@ -116,11 +116,11 @@ const Dashboard = () => {
         <h2 className="text-gray-500 text-sm uppercase mb-2">Total Balance</h2>
         <p className="text-3xl font-semibold text-gray-800 mb-6">$12,500.00</p>
         <div className="flex gap-4">
-          <div className="flex-1 bg-gray-100 p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-200 cursor-pointer">
+          <div className="flex-1 bg-gray-100 p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-blue-400 cursor-pointer">
             <FaExchangeAlt className="text-xl text-blue-600" />
             <span className="font-medium">Transfer</span>
           </div>
-          <div className="flex-1 bg-gray-100 p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-200 cursor-pointer">
+          <div className="flex-1 bg-gray-100 p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-blue-400 cursor-pointer">
             <FaPaperPlane className="text-xl text-green-600" />
             <span className="font-medium">Request</span>
           </div>

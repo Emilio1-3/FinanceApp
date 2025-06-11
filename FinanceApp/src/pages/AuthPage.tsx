@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AuthPage() {
+export default function AuthPage({ setIsAuthenticated }:  { setIsAuthenticated: (auth: boolean) => void }) {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,9 +10,9 @@ export default function AuthPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (email && password) {
       localStorage.setItem("token", "dummy-auth-token");
+      setIsAuthenticated(true);
       navigate("/dashboard");
     }
   };
@@ -24,15 +24,17 @@ export default function AuthPage() {
           {isSignUp ? "Create an Account": "Welcome Back"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-
-          <input 
-            type="name"
-            placeholder="name"
-            className="w-full px-4 py-2 border-rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        {isSignUp && (
+         <input 
+            type="text"
+            placeholder="Name"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
+        )}
+
           <input 
             type="email"
             placeholder="Email"
@@ -41,6 +43,7 @@ export default function AuthPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          
 
           <input 
             type="password"

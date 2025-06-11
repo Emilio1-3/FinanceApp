@@ -2,22 +2,24 @@
 import {
   FaHome, FaChartBar, FaWallet, FaCreditCard, FaBell, FaCog, FaSignOutAlt
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { icon: <FaHome />, label: "Home" },
-  { icon: <FaChartBar />, label: "Analytics" },
-  { icon: <FaWallet />, label: "Wallet" },
-  { icon: <FaCreditCard />, label: "Cards" },
-  { icon: <FaBell />, label: "Notifications" },
-  { icon: <FaCog />, label: "Settings" },
+  { icon: <FaHome />, label: "Home", path: "/dashboard" },
+  { icon: <FaChartBar />, label: "Analytics", path: "/analytics"},
+  { icon: <FaWallet />, label: "Wallet", path:"/wallet"},
+  { icon: <FaCreditCard />, label: "Cards", path: "/cards" },
+  { icon: <FaBell />, label: "Notifications", path:"/notifications"},
+  { icon: <FaCog />, label: "Settings", path:"settings"},
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ setIsAuthenticated }: { setIsAuthenticated: (auth: boolean) => void }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setIsAuthenticated(false);
     navigate("/");
   };
 
@@ -26,7 +28,15 @@ export default function Sidebar() {
       {/* Top Section - Menu */}
       <div className="flex flex-col items-center space-y-8">
         {menuItems.map((item, index) => (
-          <div key={index} className="text-xl text-gray-600 hover:text-blue-500 cursor-pointer">
+          <div 
+            key={index} 
+            className={`text-xl cursor-pointer ${
+              location.pathname === item.path
+                ? "text-blue-600"
+                : "text-gray-600 hover:text-blue-500"
+            }`}
+            onClick={() => navigate(item.path)}
+            title={item.label}>
             {item.icon}
           </div>
         ))}
