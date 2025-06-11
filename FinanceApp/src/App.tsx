@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
+import Analytics from "./pages/Analytics";
+import Wallet from "./pages/Wallet";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 import './index.css';
@@ -31,6 +33,26 @@ function App() {
             isAuthenticated ? (<Layout setIsAuthenticated={setIsAuthenticated}> 
               <Dashboard />
             </Layout> ): ( <Navigate to="/" />)
+          }
+        />
+
+         <Route 
+          path="/analytics"
+          element={
+            isAuthenticated ? (<Layout setIsAuthenticated={setIsAuthenticated}> 
+              <Analytics />
+            </Layout> ): ( <Navigate to="/" />)
+          }
+        />
+
+        <Route 
+          path="wallet"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Wallet />
+              </Layout>
+            ) : ( <Navigate to="/" />)
           }
         />
       </Routes>

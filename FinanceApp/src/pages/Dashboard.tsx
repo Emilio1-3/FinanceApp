@@ -18,6 +18,7 @@ import {
 } from "chart.js";
 import { Line, Pie } from "react-chartjs-2";
 import Calendar from "react-calendar";
+import CountUp from "react-countup";
 import type { CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import visaLogo from "../assets/Visa_Logo.png";
@@ -114,7 +115,9 @@ const Dashboard = () => {
       {/* Balance and buttons */}
       <div className="bg-white p-6 rounded-xl shadow-md">
         <h2 className="text-gray-500 text-sm uppercase mb-2">Total Balance</h2>
-        <p className="text-3xl font-semibold text-gray-800 mb-6">$12,500.00</p>
+        <p className="text-3xl font-semibold text-gray-800 mb-6">
+          <CountUp end={12500} duration={2.5} prefix="$" separator="," decimals={2} />
+        </p>
         <div className="flex gap-4">
           <div className="flex-1 bg-gray-100 p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-blue-400 cursor-pointer">
             <FaExchangeAlt className="text-xl text-blue-600" />
@@ -177,14 +180,18 @@ const Dashboard = () => {
                   <FaArrowUp className="text-green-500" />
                   <span>Income</span>
                 </td>
-                <td className="py-2 text-green-600 font-semibold">$3,200</td>
+                <td className="py-2 text-green-600 font-semibold">
+                  <CountUp end={3200} duration={2.5} prefix="$" separator="," decimals={2} />
+                </td>
               </tr>
               <tr>
                 <td className="py-2 font-medium flex items-center space-x-2">
                   <FaArrowDown className="text-red-500" />
                   <span>Expenses</span>
                 </td>
-                <td className="py-2 text-red-600 font-semibold">-$1,400</td>
+                <td className="py-2 text-red-600 font-semibold">
+                  -<CountUp end={1400} duration={2.5} prefix="$" separator="," decimals={2} />
+                </td>
               </tr>
             </tbody>
           </table>
