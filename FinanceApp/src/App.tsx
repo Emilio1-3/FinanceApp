@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
 import Analytics from "./pages/Analytics";
 import Wallet from "./pages/Wallet";
+import Cards from "./pages/Cards";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 import './index.css';
@@ -46,7 +47,7 @@ function App() {
         />
 
         <Route 
-          path="wallet"
+          path="/wallet"
           element={
             isAuthenticated ? (
               <Layout setIsAuthenticated={setIsAuthenticated}>
@@ -55,6 +56,17 @@ function App() {
             ) : ( <Navigate to="/" />)
           }
         />
+          
+          <Route
+            path="/cards"
+            element={
+              isAuthenticated ? (
+                <Layout setIsAuthenticated={setIsAuthenticated}>
+                  <Cards />
+                </Layout>
+              ) : ( <Navigate to="/" />)
+            }
+   />
       </Routes>
     </Router>
   );
