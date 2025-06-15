@@ -4,6 +4,8 @@ import AuthPage from "./pages/AuthPage";
 import Analytics from "./pages/Analytics";
 import Wallet from "./pages/Wallet";
 import Cards from "./pages/Cards";
+import Notifications from "./pages/Notifications";
+import Settings from "./pages/Settings";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 import './index.css';
@@ -56,17 +58,40 @@ function App() {
             ) : ( <Navigate to="/" />)
           }
         />
-          
-          <Route
-            path="/cards"
-            element={
-              isAuthenticated ? (
-                <Layout setIsAuthenticated={setIsAuthenticated}>
-                  <Cards />
-                </Layout>
-              ) : ( <Navigate to="/" />)
-            }
-   />
+
+        <Route 
+          path="/cards"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated=
+              {setIsAuthenticated}>
+                <Cards />
+              </Layout>
+            ) : ( <Navigate to="/" />)
+          }
+        />
+
+            <Route
+              path="/notifications"
+              element={
+                isAuthenticated ? (
+                  <Layout setIsAuthenticated=
+                  {setIsAuthenticated}>
+                    <Notifications />
+                  </Layout>
+                ) : ( <Navigate to="/" />)
+              } />
+
+              <Route
+              path="/settings"
+              element={
+                isAuthenticated ? (
+                  <Layout setIsAuthenticated=
+                  {setIsAuthenticated}>
+                    <Settings />
+                  </Layout>
+                ) : ( <Navigate to = "/" />)
+              } />
       </Routes>
     </Router>
   );

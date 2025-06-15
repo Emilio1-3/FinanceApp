@@ -10,7 +10,7 @@ const menuItems = [
   { icon: <FaWallet />, label: "Wallet", path:"/wallet"},
   { icon: <FaCreditCard />, label: "Cards", path: "/cards" },
   { icon: <FaBell />, label: "Notifications", path:"/notifications"},
-  { icon: <FaCog />, label: "Settings", path:"settings"},
+  { icon: <FaCog />, label: "Settings", path:"/settings"},
 ];
 
 export default function Sidebar({ setIsAuthenticated }: { setIsAuthenticated: (auth: boolean) => void }) {

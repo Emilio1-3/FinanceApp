@@ -50,9 +50,9 @@ export default function Cards() {
               className="relative w-[320px] h-[200px] perspective cursor-pointer">
 
                 <div
-                  className={`relative w-full h-full transition-transform duration-700 transform-style preserve-3d ${
+                  className={`relative w-full h-full duration-700 transform-style preserve-3d ${
                     isFlipped ? "rotate-y-180" : ""
-                  }`}>
+                  } transform transition-transform`}>
                     {/*Front Side */}
                     <div className={`absolute w-full h-full rounded-xl p-4 shadow-lg text-white ${card.color} backface-hidden`}>
                       <div className="flex justify-between">
