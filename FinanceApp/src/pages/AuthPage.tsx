@@ -1,19 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { motion } from "framer-motion";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+
 
 export default function AuthPage({ setIsAuthenticated }:  { setIsAuthenticated: (auth: boolean) => void }) {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email && password) {
-      localStorage.setItem("token", "dummy-auth-token");
-      setIsAuthenticated(true);
-      navigate("/dashboard");
+
+    const endpoint = isSignUp ? "/api/auth/register" : "/api/auth/login";
+
+    try {
+      const response = await axios.post(`http://localhost:5000${endpoint}`, {
+        name: isSignUp ? name: undefined,
+        email,
+        password,
+      });
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        setIsAuthenticated(true);
+        navigate("/dashboard");
+      } else {
+        alert("Authentication failed. No token returned.");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data?.message || "Something went wrong");
+      } else {
+        alert("An unexpected error occurred");
+      }
     }
   };
 
